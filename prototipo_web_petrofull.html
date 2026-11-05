@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Petrofull | Distribución de Combustible y Red de Estaciones</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            petro: {
+              orange: '#E85A19',
+              'orange-dark': '#C9460E',
+              'orange-light': '#FFF5EE',
+              navy: '#0C1B2E',
+              'navy-card': '#13263E',
+              slate: '#1E293B',
+              surface: '#F8FAFC'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Soporte Safe Area para iPhone y barras táctiles de Android */
+    .safe-top-padding {
+      padding-top: max(0.5rem, env(safe-area-inset-top));
+    }
+    .safe-bottom-margin {
+      bottom: max(1.25rem, calc(env(safe-area-inset-bottom) + 1rem));
+    }
+    /* Estilo de toques móviles */
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased selection:bg-orange-500 selection:text-white pb-28">
+
+  <!-- ================= TOPBAR MÓVIL FIJA ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm safe-top-padding">
+    <div class="px-4 py-3 flex items-center justify-between gap-2 max-w-lg mx-auto">
+      
+      <!-- Logotipo Optimizado Móvil -->
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-petro-orange to-petro-orange-dark flex items-center justify-center text-white shadow-md shadow-orange-500/25">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33a2.5 2.5 0 002.5 2.5c.36 0 .69-.1.97-.28L20 12.29V19a1 1 0 01-1 1h-1v-8a2 2 0 00-2-2h-1V5a2 2 0 00-2-2H5a2 2 0 00-2 2v16h12v-6h1v6h3a3 3 0 003-3v-7.59c0-.8-.32-1.56-.88-2.12l-1.35-1.06z"/></svg>
+        </div>
+        <div>
+          <span class="text-xl font-black tracking-tight text-petro-navy leading-none block">
+            PETRO<span class="text-petro-orange">FULL</span>
+          </span>
+          <span class="text-[9px] uppercase tracking-wider text-slate-500 font-bold block">
+            Combustibles & Estaciones
+          </span>
+        </div>
+      </a>
+
+      <!-- Accesos Directos Rápidos: Llamar + WhatsApp -->
+      <div class="flex items-center gap-1.5">
+        <a href="tel:+56976140822" class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 active:scale-95 transition" aria-label="Llamar a Petrofull">
+          <svg class="w-4 h-4 text-petro-orange" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/></svg>
+        </a>
+        <a href="https://wa.me/56976140822?text=Hola%20Petrofull,%20quisiera%20pedir%20di%C3%A9sel%20para%20faena." 
+           target="_blank"
+           class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl shadow-sm active:scale-95 transition">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span>PEDIR</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Contenedor optimizado para pantalla móvil (ancho teléfono) -->
+  <main class="max-w-md mx-auto px-4 space-y-6 pt-4">
+
+    <!-- ================= HERO MÓVIL ================= -->
+    <section class="bg-gradient-to-br from-petro-navy via-slate-900 to-petro-navy text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
+      <div class="relative z-10 space-y-4">
+        
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-orange-400 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-petro-orange animate-pulse"></span>
+          Más de 30 años en Chile
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
+          Energía y Confianza para el <span class="text-orange-400">Agro, Transporte</span> y la Ruta
+        </h1>
+
+        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          Distribución directa a faenas con camión cisterna y una red de <strong>3 estaciones de servicio</strong> a tu disposición.
+        </p>
+
+        <!-- Botones Táctiles Grandes -->
+        <div class="pt-2 space-y-2.5">
+          <a href="https://wa.me/56976140822?text=Hola%20Petrofull,%20necesito%20cotizar%20combustible%20di%C3%A9sel%20para%20faena." 
+             target="_blank"
+             class="w-full flex items-center justify-center gap-2 bg-petro-orange hover:bg-petro-orange-dark text-white font-bold text-sm py-3.5 px-5 rounded-2xl shadow-lg shadow-orange-600/30 active:scale-[0.98] transition">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.77 7.23l.01-.01-3.72-3.72L15 4.56l2.11 2.11c-.94.36-1.61 1.26-1.61 2.33a2.5 2.5 0 002.5 2.5c.36 0 .69-.1.97-.28L20 12.29V19a1 1 0 01-1 1h-1v-8a2 2 0 00-2-2h-1V5a2 2 0 00-2-2H5a2 2 0 00-2 2v16h12v-6h1v6h3a3 3 0 003-3v-7.59c0-.8-.32-1.56-.88-2.12l-1.35-1.06z"/></svg>
+            Pedir Diésel en Faena
+          </a>
+
+          <a href="#sucursales" 
+             class="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold text-xs py-3 px-4 rounded-2xl border border-white/15 active:scale-[0.98] transition">
+            <svg class="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Ver Nuestras 3 Estaciones
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Métricas Compactas Móvil -->
+      <div class="mt-6 pt-5 border-t border-white/10 grid grid-cols-3 gap-2 text-center">
+        <div>
+          <div class="text-lg font-black text-white">+30 Años</div>
+          <div class="text-[10px] text-slate-400">Trayectoria</div>
+        </div>
+        <div>
+          <div class="text-lg font-black text-orange-400">3</div>
+          <div class="text-[10px] text-slate-400">Estaciones</div>
+        </div>
+        <div>
+          <div class="text-lg font-black text-emerald-400">SEC</div>
+          <div class="text-[10px] text-slate-400">Certificada</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SUCURSALES (3 TARJETAS MÓVILES) ================= -->
+    <section id="sucursales" class="space-y-4 pt-2">
+      <div class="text-center">
+        <span class="text-[10px] font-extrabold uppercase tracking-widest text-petro-orange bg-orange-100 px-3 py-1 rounded-full">
+          Red de Estaciones de Servicio
+        </span>
+        <h2 class="text-xl font-black text-petro-navy mt-1.5">Nuestras 3 Sucursales</h2>
+        <p class="text-slate-500 text-xs mt-0.5">Toca el botón para abrir el GPS de tu celular directamente.</p>
+      </div>
+
+      <!-- SUCURSAL 1: CUNACO (Sin 97, Sin Ultra, Sin Kerosene, Sin 24/7) -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-petro-navy p-4 text-white flex justify-between items-start">
+          <div>
+            <span class="text-[10px] text-orange-400 font-bold uppercase tracking-wider block">Estación 01 • Cunaco</span>
+            <h3 class="text-base font-extrabold">Cunaco / Nancagua</h3>
+            <p class="text-[11px] text-slate-300 mt-0.5 flex items-center gap-1">
+              <svg class="w-3 h-3 text-petro-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              Av. Ignacio Valdés 160, Cunaco
+            </p>
+          </div>
+          <span class="px-2 py-0.5 bg-orange-500/20 text-orange-400 text-[10px] font-bold rounded-md border border-orange-500/30">
+            Valle Colchagua
+          </span>
+        </div>
+
+        <div class="p-4 space-y-3.5">
+          <!-- Combustibles Disponibles Reales -->
+          <div>
+            <span class="text-[10px] uppercase font-bold text-slate-400 block mb-1.5">Combustibles disponibles:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-800 rounded-lg text-xs font-bold">93</span>
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-800 rounded-lg text-xs font-bold">95</span>
+              <span class="px-2.5 py-1 bg-orange-100 text-petro-orange rounded-lg text-xs font-bold">Petróleo Diésel</span>
+            </div>
+          </div>
+
+          <!-- Servicios y Horarios Reales -->
+          <div class="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span><strong>Horario:</strong> Lunes a Domingo 06:30 - 22:30 hrs</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>Punto de paso y lubricantes automotrices</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>Aire para neumáticos y agua para radiador</span>
+            </div>
+          </div>
+
+          <!-- Botón Directo GPS -->
+          <a href="https://maps.google.com/?q=Petrofull+Cunaco+Chile" 
+             target="_blank" 
+             class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-petro-orange text-white font-bold text-xs py-3 px-4 rounded-xl transition duration-150 active:scale-[0.98]">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Abrir en Google Maps / Waze
+          </a>
+        </div>
+      </div>
+
+      <!-- SUCURSAL 2: PLACILLA / SAN FERNANDO -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-petro-navy p-4 text-white flex justify-between items-start">
+          <div>
+            <span class="text-[10px] text-orange-400 font-bold uppercase tracking-wider block">Estación 02 • Ruta</span>
+            <h3 class="text-base font-extrabold">Placilla / San Fernando</h3>
+            <p class="text-[11px] text-slate-300 mt-0.5 flex items-center gap-1">
+              <svg class="w-3 h-3 text-petro-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              Sector Cruce Placilla
+            </p>
+          </div>
+          <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-[10px] font-bold rounded-md border border-emerald-500/30">
+            Pista Amplia
+          </span>
+        </div>
+
+        <div class="p-4 space-y-3.5">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-slate-400 block mb-1.5">Combustibles disponibles:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-800 rounded-lg text-xs font-bold">93</span>
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-800 rounded-lg text-xs font-bold">95</span>
+              <span class="px-2.5 py-1 bg-orange-100 text-petro-orange rounded-lg text-xs font-bold">Petróleo Diésel</span>
+            </div>
+          </div>
+
+          <div class="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span><strong>Horario:</strong> Lunes a Domingo 06:30 - 22:30 hrs</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>Acceso ágil para camiones y buses de carga</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>Baños limpios y servicios para choferes</span>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com/?q=Petrofull+Placilla+Chile" 
+             target="_blank" 
+             class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-petro-orange text-white font-bold text-xs py-3 px-4 rounded-xl transition duration-150 active:scale-[0.98]">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Abrir en Google Maps / Waze
+          </a>
+        </div>
+      </div>
+
+      <!-- SUCURSAL 3: CHIMBARONGO / RUTA 5 -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-petro-navy p-4 text-white flex justify-between items-start">
+          <div>
+            <span class="text-[10px] text-orange-400 font-bold uppercase tracking-wider block">Estación 03 • Conexión</span>
+            <h3 class="text-base font-extrabold">Chimbarongo / Ruta 5</h3>
+            <p class="text-[11px] text-slate-300 mt-0.5 flex items-center gap-1">
+              <svg class="w-3 h-3 text-petro-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+              Conexión Ruta 5 Sur
+            </p>
+          </div>
+          <span class="px-2 py-0.5 bg-blue-500/20 text-blue-400 text-[10px] font-bold rounded-md border border-blue-500/30">
+            En Ruta
+          </span>
+        </div>
+
+        <div class="p-4 space-y-3.5">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-slate-400 block mb-1.5">Combustibles disponibles:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-800 rounded-lg text-xs font-bold">93</span>
+              <span class="px-2.5 py-1 bg-slate-100 text-slate-800 rounded-lg text-xs font-bold">95</span>
+              <span class="px-2.5 py-1 bg-orange-100 text-petro-orange rounded-lg text-xs font-bold">Petróleo Diésel</span>
+            </div>
+          </div>
+
+          <div class="space-y-1.5 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span><strong>Horario:</strong> Lunes a Domingo 06:30 - 22:30 hrs</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>Punto de abastecimiento rápido y lubricantes</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>Convenio para flotas y empresas contratistas</span>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com/?q=Petrofull+Chimbarongo+Chile" 
+             target="_blank" 
+             class="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-petro-orange text-white font-bold text-xs py-3 px-4 rounded-xl transition duration-150 active:scale-[0.98]">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Abrir en Google Maps / Waze
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PEDIDO RÁPIDO DIÉSEL EN FAENA ================= -->
+    <section class="bg-white rounded-3xl p-5 border border-slate-200 shadow-md space-y-4">
+      <div>
+        <span class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
+          Abastecimiento en Faena
+        </span>
+        <h3 class="text-lg font-black text-petro-navy mt-1">Reparto Directo con Cisterna</h3>
+        <p class="text-slate-500 text-xs mt-0.5">Sin formularios. Selecciona los litros y pide por WhatsApp:</p>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Selector Rápido de Litros -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1.5">Volumen Requerido:</label>
+          <div class="grid grid-cols-4 gap-1.5" id="litrosBotones">
+            <button type="button" onclick="setLitros(500, this)" class="btn-litros py-2 px-1 text-xs font-bold rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100">500 L</button>
+            <button type="button" onclick="setLitros(1000, this)" class="btn-litros py-2 px-1 text-xs font-bold rounded-xl border border-petro-orange bg-orange-50 text-petro-orange">1.000 L</button>
+            <button type="button" onclick="setLitros(2500, this)" class="btn-litros py-2 px-1 text-xs font-bold rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100">2.500 L</button>
+            <button type="button" onclick="setLitros(5000, this)" class="btn-litros py-2 px-1 text-xs font-bold rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100">5.000 L</button>
+          </div>
+        </div>
+
+        <!-- Selector de Comuna -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Comuna o Sector:</label>
+          <select id="comunaSelect" onchange="actualizarMensajeWhatsApp()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:border-petro-orange">
+            <option value="Cunaco / Nancagua">Cunaco / Nancagua</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+            <option value="Placilla / San Fernando">Placilla / San Fernando</option>
+            <option value="Chimbarongo">Chimbarongo</option>
+            <option value="Lolol / Peralillo">Lolol / Peralillo</option>
+            <option value="Otra comuna de la región">Otra comuna (especificar en chat)</option>
+          </select>
+        </div>
+
+        <!-- Botón de Envío Rápido a WhatsApp -->
+        <a id="btnPedidoWhatsapp" 
+           href="#" 
+           target="_blank" 
+           class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm py-3.5 px-4 rounded-xl shadow-lg shadow-emerald-600/25 active:scale-[0.98] transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span id="btnPedidoTexto">Pedir 1.000 L de Diésel por WhatsApp</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER MÓVIL ================= -->
+    <footer class="bg-petro-navy text-slate-300 rounded-3xl p-5 text-center space-y-4">
+      <div class="text-xl font-black text-white">
+        PETRO<span class="text-petro-orange">FULL</span>
+      </div>
+      <p class="text-xs text-slate-400">
+        Distribución de combustibles y red de 3 estaciones de servicio. Más de 30 años de confianza en terreno.
+      </p>
+
+      <div class="py-2 border-y border-slate-800 space-y-2 text-xs">
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-bold">Teléfono Central:</span>
+          <a href="tel:+56976140822" class="text-white font-extrabold text-sm hover:text-orange-400">+56 9 7614 0822</a>
+        </div>
+        <div>
+          <span class="text-slate-400 block text-[10px] uppercase font-bold">Correo:</span>
+          <a href="mailto:contacto@petrofull.cl" class="text-orange-400 font-semibold">contacto@petrofull.cl</a>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-slate-400">
+        © 2026 Petrofull SpA • Cumplimiento Normativo SEC
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ================= BOTÓN FLOTANTE WHATSAPP CON SAFE AREA ================= -->
+  <!-- Posicionado con safe-bottom-margin para nunca tapar botones en iOS o Android -->
+  <div class="fixed right-4 safe-bottom-margin z-50">
+    <a href="https://wa.me/56976140822?text=Hola%20Petrofull,%20quisiera%20consultar%20por%20combustible." 
+       target="_blank"
+       aria-label="Abrir WhatsApp"
+       class="w-13 h-13 p-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-emerald-500/40 active:scale-95 transition">
+      <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+    </a>
+  </div>
+
+  <!-- LÓGICA RÁPIDA PARA WHATSAPP MÓVIL -->
+  <script>
+    let litrosSeleccionados = 1000;
+
+    function setLitros(litros, btn) {
+      litrosSeleccionados = litros;
+      
+      // Resaltar botón activo
+      document.querySelectorAll('.btn-litros').forEach(b => {
+        b.className = 'btn-litros py-2 px-1 text-xs font-bold rounded-xl border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100';
+      });
+      btn.className = 'btn-litros py-2 px-1 text-xs font-bold rounded-xl border border-petro-orange bg-orange-50 text-petro-orange';
+
+      actualizarMensajeWhatsApp();
+    }
+
+    function actualizarMensajeWhatsApp() {
+      const comuna = document.getElementById('comunaSelect').value;
+      const btnLink = document.getElementById('btnPedidoWhatsapp');
+      const btnTexto = document.getElementById('btnPedidoTexto');
+
+      btnTexto.textContent = `Pedir ${litrosSeleccionados.toLocaleString('es-CL')} L en ${comuna}`;
+
+      const texto = `Hola Petrofull, necesito cotizar despacho de Petróleo Diésel para faena:\n\n• Litros: ${litrosSeleccionados.toLocaleString('es-CL')} L\n• Sector/Comuna: ${comuna}\n\nQuedo atento a disponibilidad y precio. Gracias.`;
+      
+      btnLink.href = `https://wa.me/56976140822?text=${encodeURIComponent(texto)}`;
+    }
+
+    // Inicializar al cargar
+    actualizarMensajeWhatsApp();
+  </script>
+
+</body>
+</html>
